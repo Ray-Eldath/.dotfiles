@@ -444,13 +444,17 @@ Plug 'lambdalisue/suda.vim'  " auto-sudoer
 
 Plug 'joshdick/onedark.vim', { 'branch': 'main' }
 Plug 'rakr/vim-one'
+Plug 'sainnhe/everforest'
 call plug#end()
 
-try
-    colorscheme onedark
-catch
-endtry
+if has('termguicolors')
+    set termguicolors
+endif
 set background=dark
+
+let g:everforest_background = 'midium'
+colorscheme everforest
+" let g:lightline.colorscheme = 'everforest'
 
 nmap <leader><space>  :Clap<cr>
 nmap <leader><space>f :Clap files<cr>
