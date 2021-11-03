@@ -452,7 +452,7 @@ if has('termguicolors')
 endif
 set background=dark
 
-let g:everforest_background = 'midium'
+let g:everforest_background = 'medium'
 colorscheme everforest
 " let g:lightline.colorscheme = 'everforest'
 
