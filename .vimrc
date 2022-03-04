@@ -480,3 +480,14 @@ let g:tagbar_autofocus = 1
 " let g:tagbar_autoclose = 1
 
 let g:suda_smart_edit = 1
+
+set wrap!
+
+" \l to highlight a line
+nnoremap <silent> <leader>l :call matchadd('Search', '\%'.line('.').'l')<CR>
+
+" \L to remove highlighted line
+nnoremap <silent> <leader>L :
+  \for m in filter(getmatches(), { i, v -> has_key(l:v, 'pattern') && l:v.pattern is? '\%'.line('.').'l'} )
+  \<BAR>           :call matchdelete(m.id)
+  \<BAR> :endfor<CR>
