@@ -13,6 +13,13 @@ config.window_close_confirmation = 'NeverPrompt'
 config.keys = {
   { key = 'LeftArrow', mods = 'SHIFT', action = act.ActivateTabRelative(-1) },
   { key = 'RightArrow', mods = 'SHIFT', action = act.ActivateTabRelative(1) },
+  { key = '%', mods = 'SUPER|SHIFT', action = act.SplitVertical },
+  { key = '"', mods = 'SUPER|SHIFT', action = act.SplitHorizontal },
+  { key = 'w', mods = 'CMD', action = act.CloseCurrentPane { confirm = true } },
+  { key = 'LeftArrow', mods = 'SUPER|SHIFT', action = act.ActivatePaneDirection 'Left' },
+  { key = 'RightArrow', mods = 'SUPER|SHIFT', action = act.ActivatePaneDirection 'Right' },
+  { key = 'UpArrow', mods = 'SUPER|SHIFT', action = act.ActivatePaneDirection 'Up' },
+  { key = 'DownArrow', mods = 'SUPER|SHIFT', action = act.ActivatePaneDirection 'Down' },
 }
 
 local TAG_BG_COLOR = '#F7F5F2'
