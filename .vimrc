@@ -415,10 +415,31 @@ function! TogglePaste()
 endfunction
 noremap <leader>p :call TogglePaste()<cr>
 
+let g:longline = 0
+function! ToggleLongLine()
+    if g:longline == 0
+        let g:longline = 1
+        nnoremap j gj
+        nnoremap k gk
+        echo "LongLine Mode Enabled"
+    else
+        let g:longline = 0
+        :unmap j
+        :unmap k
+        echo "LongLine Mode Disabled"
+    endif
+endfunction
+nnoremap <leader>ll :call ToggleLongLine()<cr>
+
 autocmd BufNewFile,BufRead *.sc set syntax=scala
 
 
 " plugin-related configuration
+let data_dir = has('nvim') ? stdpath('data') . '/site' : '~/.vim'
+if empty(glob(data_dir . '/autoload/plug.vim'))
+  silent execute '!curl --insecure -fLo '.data_dir.'/autoload/plug.vim --create-dirs  https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+endif
 
 call plug#begin('~/.vim/plugged')
 Plug 'mhinz/vim-startify'  " fancy start screen
@@ -436,7 +457,6 @@ Plug 'mbbill/undotree'  " undotree
 " Plug 'wakatime/vim-wakatime'  " wakatime
 Plug 'junegunn/vim-easy-align'
 Plug 'tpope/vim-speeddating'  " enhanced C-A and C-X for date and roman numerals
-Plug 'jiangmiao/auto-pairs'  " auto pair brackets, parens, etc.
 Plug 'sheerun/vim-polyglot'  " multi-language syntax highlighting packs, vim-sensible included
 Plug 'preservim/nerdtree'  " tree file explorer
 Plug 'preservim/tagbar'  " in-memory ctags and browser
@@ -445,16 +465,21 @@ Plug 'lambdalisue/suda.vim'  " auto-sudoer
 Plug 'joshdick/onedark.vim', { 'branch': 'main' }
 Plug 'rakr/vim-one'
 Plug 'sainnhe/everforest'
+Plug 'rakr/vim-two-firewatch'
 call plug#end()
 
 if has('termguicolors')
     set termguicolors
 endif
-set background=dark
 
 let g:everforest_background = 'medium'
-colorscheme everforest
-" let g:lightline.colorscheme = 'everforest'
+let g:lightline = {
+      \ 'colorscheme': 'one',
+      \ }
+let g:one_allow_italics = 1
+let g:two_firewatch_italics=1
+set background=light
+colorscheme one
 
 nmap <leader><space>  :Clap<cr>
 nmap <leader><space>f :Clap files<cr>
@@ -480,8 +505,6 @@ let g:tagbar_autofocus = 1
 " let g:tagbar_autoclose = 1
 
 let g:suda_smart_edit = 1
-
-set wrap!
 
 " \l to highlight a line
 nnoremap <silent> <leader>l :call matchadd('Search', '\%'.line('.').'l')<CR>
