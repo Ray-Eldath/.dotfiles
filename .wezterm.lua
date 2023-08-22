@@ -16,6 +16,7 @@ config.keys = {
   { key = '%', mods = 'SUPER|SHIFT', action = act.SplitVertical },
   { key = '"', mods = 'SUPER|SHIFT', action = act.SplitHorizontal },
   { key = 'w', mods = 'CMD', action = act.CloseCurrentPane { confirm = true } },
+  { key = 't', mods = 'CMD|SHIFT', action = act.ShowLauncher },
   { key = 'LeftArrow', mods = 'SUPER|SHIFT', action = act.ActivatePaneDirection 'Left' },
   { key = 'RightArrow', mods = 'SUPER|SHIFT', action = act.ActivatePaneDirection 'Right' },
   { key = 'UpArrow', mods = 'SUPER|SHIFT', action = act.ActivatePaneDirection 'Up' },
