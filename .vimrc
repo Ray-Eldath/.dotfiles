@@ -41,7 +41,7 @@ filetype plugin on
 filetype indent on
 
 " Set to auto read when a file is changed from the outside
-set autoread
+" set autoread
 
 " With a map leader it's possible to do extra key combinations
 " like <leader>w saves the current file
@@ -128,7 +128,7 @@ endif
 
 
 " Add a bit extra margin to the left
-set foldcolumn=1
+" set foldcolumn=1
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -381,9 +381,9 @@ endfunction
 
 " Customized by Ray Eldath
 
-let g:timeoutlen = 500
+" let g:timeoutlen = 500
 
-set number
+" set number
 
 set confirm
 set title
@@ -442,30 +442,30 @@ if empty(glob(data_dir . '/autoload/plug.vim'))
 endif
 
 call plug#begin('~/.vim/plugged')
+Plug '~/.fzf'
 Plug 'mhinz/vim-startify'  " fancy start screen
 Plug 'preservim/nerdcommenter'  " comment out anything
-Plug 'junegunn/goyo.vim'  " distraction-free vim
-Plug 'liuchengxu/vim-clap', { 'do': { -> clap#installer#force_download() } }  " popup for everything
+" Plug 'junegunn/goyo.vim'  " distraction-free vim
 Plug 'wellle/targets.vim'  " overwrite and extend bundled text objects
 " Plug 'vim-airline/vim-airline'
 " Plug 'vim-airline/vim-airline-themes'
 Plug 'itchyny/lightline.vim'
 Plug 'rhysd/clever-f.vim'  " enhanced f F t T
 Plug 'tpope/vim-surround'  " all about surroundings
-Plug 'tpope/vim-unimpaired'  " enhanced copy-and-paste
+" Plug 'tpope/vim-unimpaired'  " enhanced copy-and-paste
 Plug 'mbbill/undotree'  " undotree
 " Plug 'wakatime/vim-wakatime'  " wakatime
 Plug 'junegunn/vim-easy-align'
 Plug 'tpope/vim-speeddating'  " enhanced C-A and C-X for date and roman numerals
 Plug 'sheerun/vim-polyglot'  " multi-language syntax highlighting packs, vim-sensible included
 Plug 'preservim/nerdtree'  " tree file explorer
-Plug 'preservim/tagbar'  " in-memory ctags and browser
+" Plug 'preservim/tagbar'  " in-memory ctags and browser
+Plug 'liuchengxu/vista.vim'  " viewer & finder for LSP symbols and tags
 Plug 'lambdalisue/suda.vim'  " auto-sudoer
 
 Plug 'joshdick/onedark.vim', { 'branch': 'main' }
 Plug 'rakr/vim-one'
 Plug 'sainnhe/everforest'
-Plug 'rakr/vim-two-firewatch'
 call plug#end()
 
 if has('termguicolors')
@@ -475,16 +475,19 @@ endif
 let g:everforest_background = 'medium'
 let g:lightline = {
       \ 'colorscheme': 'one',
+      \ 'active': {
+      \   'left': [ [ 'mode', 'paste' ],
+      \             [ 'readonly', 'filename', 'modified', 'method' ] ]
+      \ },
+      \ 'component_function': {
+      \   'method': 'NearestMethodOrFunction'
+      \ },
       \ }
 let g:one_allow_italics = 1
 let g:two_firewatch_italics=1
 set background=light
 colorscheme one
 
-nmap <leader><space>  :Clap<cr>
-nmap <leader><space>f :Clap files<cr>
-nmap <leader><space>g :Clap grep2<cr>
-nmap <leader><space>j :Clap dumb_jump<cr>
 " nnoremap ; :
 " nnoremap : ;
 
@@ -500,8 +503,9 @@ nnoremap <leader>n :NERDTreeFocus<CR>
 nnoremap <F2> :NERDTreeToggle<CR>
 noremap <F5> :UndotreeToggle<CR>
 
-noremap <F8> :TagbarToggle<CR>
-let g:tagbar_autofocus = 1
+noremap <F8> :Vista!!<CR>
+" noremap <F8> :TagbarToggle<CR>
+" let g:tagbar_autofocus = 1
 " let g:tagbar_autoclose = 1
 
 let g:suda_smart_edit = 1
