@@ -1,0 +1,9 @@
+# use ble/debug/keylog#start and ble/debug/keylog#end to log raw
+# and interpreted key sequence per discussion at
+# https://github.com/akinomyoga/ble.sh/issues/571
+ble-bind -m 'emacs' -f 'C-M-?' 'kill-region-or kill-backward-cword'
+
+# copied from #How to kill/copy words including the spaces preceding them? 
+# at https://github.com/akinomyoga/ble.sh/wiki/Q&A
+ble-bind -m 'emacs' -f C-w 'kill-region-or kill-uword'
+ble-bind -m 'emacs' -f M-w 'copy-region-or copy-uword'
