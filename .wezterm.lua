@@ -3,13 +3,15 @@ local act = wezterm.action
 local config = {}
 
 config.default_prog = { '/opt/homebrew/bin/fish' }
+config.default_domain = 'SSHMUX:tdx0'
 config.font = wezterm.font 'Cascadia Mono PL'
 config.font_size = 16.0
-config.color_scheme = 'Unikitty Light (base16)'
+config.color_scheme = 'Humanoid light (base16)'
 config.use_fancy_tab_bar = false
 config.tab_bar_at_bottom = false
 config.audible_bell = 'Disabled'
 config.window_close_confirmation = 'NeverPrompt'
+config.native_macos_fullscreen_mode = true
 config.keys = {
   { key = 'LeftArrow', mods = 'SHIFT', action = act.ActivateTabRelative(-1) },
   { key = 'RightArrow', mods = 'SHIFT', action = act.ActivateTabRelative(1) },
@@ -21,7 +23,6 @@ config.keys = {
   { key = 'RightArrow', mods = 'SUPER|SHIFT', action = act.ActivatePaneDirection 'Right' },
   { key = 'UpArrow', mods = 'SUPER|SHIFT', action = act.ActivatePaneDirection 'Up' },
   { key = 'DownArrow', mods = 'SUPER|SHIFT', action = act.ActivatePaneDirection 'Down' },
-  { key = 'Backspace', mods = 'META', action = act.SendString '\x17' }
 }
 
 local TAG_BG_COLOR = '#F7F5F2'
